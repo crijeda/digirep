@@ -7,3 +7,5 @@ AppController.events({
     AccountsTemplates.logout();
   }
 });
+
+

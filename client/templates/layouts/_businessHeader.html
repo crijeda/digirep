@@ -199,11 +199,12 @@
                         </a>
                         <ul class="dropdown-menu menu">
                             <li>
-                                <a href="#">
+                                <a href="#" data-action="logout" class="logout">
                                         <!-- Support Team -->
                                         <span><i class="fa fa-sign-out"></i>Salir</span>
                                     <!-- <p>Why not buy a new awesome theme?</p> -->
                                 </a>
+                               <!--   <a href="#" data-action="logout" class="btn btn-default btn-flat logout">Salir</a> -->
                             </li>
                         </ul>
                     </li>
@@ -248,19 +249,35 @@
                 <li class="treeview ">
                     <a href="#"><i class="fa fa-star"></i><span>Mi cuenta</span> <i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu nav nav-second-level">
-                        <li><a href="#">Mis marcas</a></li>
-                        <li><a href="#">Mis datos de facturacion</a></li>
-                        <li><a href="#">Mis facturas de servicios</a></li>
+                        <li>
+                            <a href="{{ pathFor 'business/brands' }}">
+                                Mis marcas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ pathFor 'business/facturation' }}">
+                                Mis datos de facturacion
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ pathFor 'business/services' }}">
+                                Mis facturas de servicios
+                            </a>
+                        </li>
                     </ul>
                 </li>
-                <li><a href="#"><i class="fa fa-star"></i><span>Influenciadores recomendados</span></a></li>
+                <li>
+                    <a href="{{ pathFor 'business/recommended' }}">
+                        <i class="fa fa-star"></i><span>Influenciadores recomendados</span>
+                    </a>
+                </li>
 
                 <li class="treeview ">
                     <a href="#"><i class="fa fa-star"></i><span>Campañas</span><i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu nav nav-second-level">
-                        <li><a href="#">Iniciar campaña</a></li>
-                        <li><a href="#">Campañas activas</a></li>
-                        <li><a href="#">Historial</a></li>
+                        <li><a href="{{ pathFor 'business/newCampaign' }}">Iniciar campaña</a></li>
+                        <li><a href="{{ pathFor 'business/campaigns' }}">Campañas activas</a></li>
+                        <li><a href="{{ pathFor 'business/campaignsRecord' }}">Historial</a></li>
                     </ul>
                 </li>
 
@@ -271,7 +288,11 @@
                     </ul>
                 </li>
 
-                <li><a href="#"><i class="fa fa-star"></i><span>Ayuda</span></a></li>
+                <li>
+                    <a href="{{ pathFor 'business/help' }}">
+                        <i class="fa fa-star"></i><span>Ayuda</span>
+                    </a>
+                </li>
 
 
             </ul>

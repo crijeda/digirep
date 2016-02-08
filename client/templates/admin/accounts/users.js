@@ -1,4 +1,95 @@
-Template.appLayout.rendered = function() {
+Template.users.rendered = function() {
+
+};
+
+
+if (Meteor.isClient) {
+// This code only runs on the client
+
+Template.ButtonShowUsers.events({
+    'click .edit': function () {
+// alert(this._id);
+window.location = Router.url('users')+'/'+ this._id;
+
+},
+});
+
+Template.ShowProfile.events({
+
+    'click .remove': function () {
+        Meteor.users.remove(this._id);
+// alert(this._id);
+Router.go('users');
+
+},
+'click .cancel': function () {
+// alert(this._id);
+Router.go('users');
+
+}
+});
+
+Template.users.helpers({
+
+    schema: function () {
+        return Schema.createUserFormSchema;
+    },
+    RolesOptions: function () {
+        return {
+            "Admin": "Admin",
+            "Influencer": "Influenciador",
+            "Business": "Empresa"
+        }
+    }
+
+});
+
+Template.ShowProfile.helpers({
+
+    schema: function () {
+        return Schema.createUserFormSchema;
+    }
+
+});
+
+
+}
+
+Template.login.events({
+    'submit form': function(event){
+        event.preventDefault();
+        var email = $('[name=email]').val();
+        var password = $('[name=password]').val();
+
+
+        Meteor.loginWithPassword(email, password, function(error){
+            if(error){
+                Router.go('loginf');
+
+            } else {
+                Router.go("home");
+            }
+        });
+    }
+});
+Template.loginf.events({
+    'submit form': function(event){
+        event.preventDefault();
+        var email = $('[name=email]').val();
+        var password = $('[name=password]').val();
+
+        Meteor.loginWithPassword(email, password, function(error){
+            if(error){
+                Router.go('loginf');
+
+            } else {
+                Router.go("home");
+            }
+        });
+    }
+});
+
+Template.ShowProfile.rendered = function() {
     $('.sidebar-toggle').each(function() {
         var group = $(this);
         $(this).find(".btn").click(function(e) {
@@ -58,54 +149,4 @@ if (checkElement.is('.treeview-menu')) {
     e.preventDefault();
 }
 });
-
-
 }
-
-// Template.appLayout.onCreated(function() {
-//   this.subscribe('users');
-// });
-
-Template.appLayout.events({
-    'click .logout': function(event){
-        event.preventDefault();
-        Meteor.logout();
-        Router.go('login');
-    },
-
-    'click .profile': function () {
-        window.location = Router.url('users')+'/'+ Meteor.userId();
-    }
-
-});
-
-Template.appLayout.helpers({
-    // var role = Meteor.users.find(this._id);
-
-    
-    // user: function () {
-    //     var user = Meteor.users.find(this._id);
-    //     return user;
-    // },
-
-    role: function () {
-        var role = Meteor.user().roles;
-        return role;
-    },
-
-    isAdmin: function (name) {
-        var role = Meteor.user().roles;
-        return role == "Admin"
-    },
-
-    isInfluencer: function (name) {
-        var role = Meteor.user().roles;
-        return role == "Influencer"
-    },
-
-    isBusiness: function (name) {
-        var role = Meteor.user().roles;
-        return role == "Business"
-    }
-
-});

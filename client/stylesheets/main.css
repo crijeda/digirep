@@ -56,8 +56,8 @@ h3.gradientbg {
 
 .content-container {
 	/*max-width: 1200px;*/
-	/*min-height: 420px;*/
-
+	min-height: 600px;
+	background: #FFF;
 }
 
 .content, .content-header {
@@ -65,7 +65,7 @@ h3.gradientbg {
 }
 
 .content{
-	/*min-height: 420px;*/
+	min-height: 220px;
 }
 
 .navbar-static-top { /*_publicHeader.html & _appHeader.html*/

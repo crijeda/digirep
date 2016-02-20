@@ -14,7 +14,7 @@ Router.onBeforeAction(function () {
         this.next();
     }
 }, {
-    except: ['login','loginf']
+    except: ['login','loginf','users']
 }); 
 
 Router.route('/', {
@@ -26,6 +26,11 @@ Router.route('/influencer/preferences', {
   name: 'influencer/preferences',
   layoutTemplate: 'appLayout'
 });
+
+// Router.route('/influencer/profile', function () {
+//   var item = Meteor.users.findOne({_id: this.params._id});
+//   this.render('influencerProfile', {data: item});
+// });
 
 Router.route('/influencer/profile', {
   name: 'influencer/profile',

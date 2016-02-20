@@ -6,6 +6,26 @@ Schema.createUserFormSchema = new SimpleSchema({
         optional: false,
         label: "Nombre"
     },
+    //   lastname: {
+    //     type: String,
+    //     optional: false,
+    //     label: "Apellido"
+    // },
+    //     rut: {
+    //     type: String,
+    //     optional: false,
+    //     label: "Rut"
+    // },
+    //    address: {
+    //     type: String,
+    //     optional: false,
+    //     label: "Dirección"
+    // },
+    //    bio: {
+    //     type: String,
+    //     optional: false,
+    //     label: "Bio"
+    // },
 
     email: {
         type: String,
@@ -36,6 +56,7 @@ password: {
 },
 passwordConfirmation: {
     type: String,
+    optional: false,
     label: "Confirmar Contraseña",
 // this is a custom validation to ensure the password match
 custom: function () {
@@ -91,13 +112,13 @@ TabularTables.Users = new Tabular.Table({
             return  '<span class="label label-success">'+x+'</span>';
         }
         if(x=="Influencer"){
-            return  '<span class="label label-primary">Influenciador</span>';
+            return  '<span class="label label-primary">Influencer</span>';
         }
         if(x=="Business"){
-            return  '<span class="label label-warning">Empresa</span>';
+            return  '<span class="label label-warning">Business</span>';
         }
         else{
-            return  '<span class="label label-danger">Sin Rol</span>';
+            return  '<span class="label label-danger">No Rol</span>';
 
         }
     }

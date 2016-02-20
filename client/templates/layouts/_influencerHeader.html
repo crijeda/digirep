@@ -4,7 +4,7 @@
         <!-- Logo -->
         <a href="{{pathFor 'home'}}" class="logo logosup">
             <!-- <b>Admin</b>LTE 2 -->
-            <img src="http://agenciadev01.info/lab/digirep/img/digirep-logo.gif">
+            <img src="{{pathFor 'home'}}images/eglow.png" style="margin-left: 30px;">
         </a>
 
         <!-- <a class="navbar-brand logosup" href="http://agenciadev01.info/lab/digirep/front-business/index.php"></a> -->
@@ -258,7 +258,8 @@
 
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
-                <h1 class="user-name gradientbg" id="data-profile-name">Kathy Bodis</h1>
+                <h1 class="user-name colorgray" id="data-profile-name">{{user.username}}</h1>
+                <br>
                 <!-- <div class="pull-left image">
                     <img src="images/user2-160x160.jpg" class="img-circle" alt="User Image" />
                 </div>
@@ -269,7 +270,7 @@
                 <div class="col-xs-12 col-md-12">
                     <!-- <h2 class="points" id="data-user-points">99 Pts.</h2> -->
                     <p class="interests" id="data-profile-bio">
-                        Presentadora de TV, Relacionadora Pública y Emprendiendo con DIGIREP. Amo comer, dormir, animales, videojuegos, maquillaje, tecnología, sol y viajar!
+                        {{ ProfileBio }}
                     </p>
                 </div><!-- /.col-xs-12 -->
 
@@ -351,4 +352,17 @@
         </section>
         <!-- /.sidebar -->
     </aside>
+</template>
+
+<template name="simple">
+  <h1>Calling serve method</h1>
+  <input type="button" value="Call" />
+  <div id="simpleResult">{{result}}</div>
+</template>
+
+<template name="passData">
+  <h1>passing data to server method</h1>
+  <span>Name: </span><input type="text" value="Nachiket"/>
+  <input type="button" value="Call" />
+  <div id="passDataResult">{{result}}</div>
 </template>

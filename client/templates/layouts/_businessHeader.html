@@ -4,7 +4,7 @@
         <!-- Logo -->
         <a href="{{pathFor 'home'}}" class="logo logosup">
             <!-- <b>Admin</b>LTE 2 -->
-            <img src="http://agenciadev01.info/lab/digirep/img/digirep-logo.gif">
+            <img src="{{pathFor 'home'}}images/eglow.png" style="margin-left: 30px;">
         </a>
 
         <!-- <a class="navbar-brand logosup" href="http://agenciadev01.info/lab/digirep/front-business/index.php"></a> -->
@@ -231,7 +231,7 @@
 
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
-                <h1 class="user-name gradientbg" id="data-profile-name">Domino Fuente de Soda</h1>
+                <h1 class="user-name colorgray" id="data-profile-name">Domino Fuente de Soda</h1>
                 <!-- <div class="pull-left image">
                     <img src="images/user2-160x160.jpg" class="img-circle" alt="User Image" />
                 </div>
@@ -239,13 +239,19 @@
                     <p>Alexander Pierce</p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div> -->
+                <div class="user-avatar-box">
+                        <img src="http://agenciadev01.info/lab/digirep/img/1-domino.png" class="img-responsive user-avatar" alt="" id="data-profile-picture" style="border: solid; border-width: 8px;">
+                        <!-- <img src="https://pbs.twimg.com/profile_images/491077197201829888/fQV2RA3o_400x400.jpeg" class="img-responsive user-avatar" alt="" id="data-profile-picture" /> -->
+
+                        
+                    </div>
             </div>
 
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu nav">
                 <!-- <li class="header">HEADER</li> -->
                 <!-- Optionally, you can add icons to the links -->
-                <li class="active"><a href="#"><i class="fa fa-dashboard"></i><span>Inicio</span></a></li>
+                <li class="active"><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i><span>Inicio</span></a></li>
                 <li class="treeview ">
                     <a href="#"><i class="fa fa-star"></i><span>Mi cuenta</span> <i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu nav nav-second-level">

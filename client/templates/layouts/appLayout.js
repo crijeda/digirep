@@ -62,6 +62,12 @@ if (checkElement.is('.treeview-menu')) {
 
 }
 
+if (Meteor.isClient) {
+  // This code only runs on the client
+  Meteor.subscribe("users");
+
+}
+
 // Template.appLayout.onCreated(function() {
 //   this.subscribe('users');
 // });
@@ -73,9 +79,9 @@ Template.appLayout.events({
         Router.go('login');
     },
 
-    'click .profile': function () {
-        window.location = Router.url('users')+'/'+ Meteor.userId();
-    }
+    // 'click .profile': function () {
+    //     window.location = Router.url('users')+'/'+ Meteor.userId();
+    // }
 
 });
 
@@ -87,7 +93,11 @@ Template.appLayout.helpers({
     //     var user = Meteor.users.find(this._id);
     //     return user;
     // },
+    user: function () {
 
+        var user = Meteor.users.find().fetch();
+        return user[0]
+    },
     role: function () {
         var role = Meteor.user().roles;
         return role;
@@ -106,6 +116,22 @@ Template.appLayout.helpers({
     isBusiness: function (name) {
         var role = Meteor.user().roles;
         return role == "Business"
-    }
+    },
+
+
+});
+
+Template._influencerSidebar.helpers({
+
+    user: function () {
+
+        var user = Meteor.users.find().fetch();
+        return user[0]
+    },
+
+    ProfileBio: function () {
+
+        return "Realizando pruebas"
+    },
 
 });

@@ -258,19 +258,25 @@
 
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
-                <h1 class="user-name colorgray" id="data-profile-name">{{user.username}}</h1>
-                <br>
-                <!-- <div class="pull-left image">
-                    <img src="images/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                <h1 class="user-name colorgray" id="data-profile-name">{{ profile.firstname }} {{ profile.lastname }}</h1>
+                <!-- <br> -->
+               <div class="user-avatar-box">
+
+                        {{# if profileimage}}
+                        <img src="{{ profileimage }}" class="img-responsive user-avatar" alt="" id="data-profile-picture" style="border: solid; border-width: 8px;">
+                        {{ else }}
+                        <img src="http://team.org/blog/wp-content/uploads/2014/06/blank-user.jpg" class="img-responsive user-avatar" alt="" id="data-profile-picture" style="border: solid; border-width: 8px;">
+                        {{/if}}
+
                 </div>
-                <div class="pull-left info">
-                    <p>Alexander Pierce</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                </div> -->
                 <div class="col-xs-12 col-md-12">
                     <!-- <h2 class="points" id="data-user-points">99 Pts.</h2> -->
                     <p class="interests" id="data-profile-bio">
-                        {{ ProfileBio }}
+                    {{ # if profile.bio}}
+                    {{ profile.bio }}
+                    {{else}}
+                    {{ datatwitter.profilestatistics.[0].profilebio }} 
+                    {{/if}}
                     </p>
                 </div><!-- /.col-xs-12 -->
 
@@ -286,7 +292,7 @@
                     <a href="#"><i class="fa fa-star"></i><span>Mi Cuenta</span> <i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu nav nav-second-level">
                         <li><a href="{{ pathFor 'influencer/preferences' }}">Mis Preferencias</a></li>
-                        <li><a href="{{ pathFor 'influencer/profile' }}">Mi Perfil</a></li>
+                        <li><a href="{{ pathFor 'influencer' }}/profile/{{userId}}">Mi Perfil</a></li>
                         <li><a href="{{ pathFor 'influencer/facturation' }}">Mis datos de Facturacion</a></li>
                     </ul>
                 </li>

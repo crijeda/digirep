@@ -3,3 +3,8 @@ UsersController = AppController.extend({
 
   }
 });
+influencerProfileController = AppController.extend({
+  data: {
+
+  }
+});

@@ -65,6 +65,8 @@ if (checkElement.is('.treeview-menu')) {
 if (Meteor.isClient) {
   // This code only runs on the client
   Meteor.subscribe("users");
+  Meteor.subscribe("profile");
+  Meteor.subscribe("datatwitter");
 
 }
 
@@ -128,10 +130,39 @@ Template._influencerSidebar.helpers({
         var user = Meteor.users.find().fetch();
         return user[0]
     },
+    userId: function () {
 
-    ProfileBio: function () {
+        var user = Meteor.userId();
+        return user
+    },
 
-        return "Realizando pruebas"
+    profile: function () {
+
+        var profile = Profile.find({userId:Meteor.userId()}).fetch();
+        return profile[0]
+    },
+    profileimage: function () {
+
+        var profile = Profile.find({userId:Meteor.userId()}).fetch();
+        var twitteraccount = profile[0].twitteracccount;
+        var datatwitter = DataTwitter.find({screenname:twitteraccount}).fetch();
+        var profileimage = datatwitter[0].profilestatistics[0].profileimage;
+        if (profileimage.indexOf("jpg") > 0) {
+
+            return profileimage.substring(0, 63)+'.jpg';
+        }
+        if (profileimage.indexOf("jpeg") > 0) {
+
+            return profileimage.substring(0, 63)+'.jpeg';
+        }
+        // return profileimage.substring(0, 63)+'.jpg';
+    },
+    datatwitter: function () {
+
+        var profile = Profile.find({userId:Meteor.userId()}).fetch();
+        var twitteraccount = profile[0].twitteracccount;
+        var datatwitter = DataTwitter.find({screenname:twitteraccount}).fetch();
+        return datatwitter[0]
     },
 
 });

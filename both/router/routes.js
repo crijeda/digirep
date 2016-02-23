@@ -20,6 +20,9 @@ Router.onBeforeAction(function () {
 Router.route('/', {
   name: 'home'
 });
+Router.route('/influencer', {
+  name: 'influencer'
+});
 
 //INFLUENCER
 Router.route('/influencer/preferences', {
@@ -32,10 +35,12 @@ Router.route('/influencer/preferences', {
 //   this.render('influencerProfile', {data: item});
 // });
 
-Router.route('/influencer/profile', {
-  name: 'influencer/profile',
-  layoutTemplate: 'appLayout'
+Router.route('/influencer/profile/:_id', function () {
+  var item = Profile.findOne({userId: this.params._id});
+  this.render('influencerProfile', {data: item});
+
 });
+
 
 Router.route('/influencer/facturation', {
   name: 'influencer/facturation',

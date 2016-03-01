@@ -65,6 +65,7 @@ Template.login.events({
 
             } else {
                 Router.go("home");
+                Meteor.call('sincTwitter');
             }
         });
     }
@@ -81,6 +82,7 @@ Template.loginf.events({
 
             } else {
                 Router.go("home");
+                Meteor.call('sincTwitter');
             }
         });
     }

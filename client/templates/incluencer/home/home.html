@@ -123,14 +123,13 @@
             </div>
             <!-- /.col-lg-12 -->
         </div>
-
         <div class="row statistics">
         	<div class="col-md-12 col-lg-8">
         		<div class="row">
 
         		{{ # if profile.twitteracccount }}
         			<!-- TWITTER -->
-		        	<div class="col-xs-12 stats-twitter">
+		        	<div class="col-xs-12">
 		        		<div class="row">
 		        			<div class="col-xs-12">
 		        				<h2>Twitter</h2><!-- /.social tw -->
@@ -208,7 +207,7 @@
 		        		<div class="row">
 				        	<div class="col-xs-6 col-md-4">
 				        		<div class="chartbox sm single-number">
-				        			<p class="sm"><i class="fa fa-users"></i> 5.768 | 1.576</p>
+				        			<p class="sm"><i class="fa fa-users"></i> {{ datainstagram.profilestatistics.[0].qtyfollowers }} | {{ datainstagram.profilestatistics.[0].qtyfollowing }}</p>
 				        			<h3>Seguidores | Seguidos</h3>
 				        		</div><!-- /.chartbox -->
 				        	</div><!-- /.col-xs-3 -->

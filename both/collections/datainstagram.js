@@ -1,4 +1,4 @@
-DataTwitter = new Mongo.Collection("DataTwitter");
+DataInstagram = new Mongo.Collection("DataInstagram");
 
 ProfileStatisticsSchema = new SimpleSchema({
   // createdAt: {
@@ -23,7 +23,7 @@ ProfileStatisticsSchema = new SimpleSchema({
     type: String,
     optional: true,
   },
-  qtytweets: {
+  qtyfeeds: {
     type: Number,
     optional: true,
   },
@@ -35,11 +35,7 @@ ProfileStatisticsSchema = new SimpleSchema({
     type: Number,
     optional: true,
   },
-  qtyfavorites: {
-    type: Number,
-    optional: true,
-  },
-  qtyretweets: {
+  qtylikes: {
     type: Number,
     optional: true,
   },
@@ -59,11 +55,11 @@ ProfileStatisticsSchema = new SimpleSchema({
 
 });
 
-DataTwitter.attachSchema(new SimpleSchema({
+DataInstagram.attachSchema(new SimpleSchema({
   screenname: {
     type: String,
     optional: true,
-    label: "TwitterScreenname",
+    label: "InstagramScreenname",
     max: 200
   },
    profilestatistics: {

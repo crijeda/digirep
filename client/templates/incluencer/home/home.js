@@ -4,6 +4,7 @@ if (Meteor.isClient) {
   Meteor.subscribe("users");
   Meteor.subscribe("profile");
   Meteor.subscribe("datatwitter");
+  Meteor.subscribe("datainstagram");
 
 }
 
@@ -12,15 +13,11 @@ if (Meteor.isClient) {
 // });
 
 Template.homeInfluencer.events({
-    // 'click .logout': function(event){
-    //     event.preventDefault();
-    //     Meteor.logout();
-    //     Router.go('login');
-    // },
 
-    // 'click .profile': function () {
-    //     window.location = Router.url('users')+'/'+ Meteor.userId();
-    // }
+    'click .sincTwitter': function (event) {
+        event.preventDefault();
+        Meteor.call('sincTwitter');
+    }
 
 });
 
@@ -46,6 +43,12 @@ Template.homeInfluencer.helpers({
         var datatwitter = DataTwitter.find({screenname:twitteraccount}).fetch();
         return datatwitter[0]
     },
+    datainstagram: function () {
 
+        var profile = Profile.find({userId:Meteor.userId()}).fetch();
+        var instagramaccount = profile[0].instagramaccount;
+        var datainstagram = DataInstagram.find({screenname:instagramaccount}).fetch();
+        return datainstagram[0]
+    },
 
 });

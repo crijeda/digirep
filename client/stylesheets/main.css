@@ -779,3 +779,68 @@ footer p {
 	.panel-shown li {
 		text-align: left;
 	}
+
+	.donut-followers {
+	height: 300px;
+	/*margin: 25px auto;*/
+	margin-top: 30px;
+	padding: 25px;
+	background-color: #efeeee;
+	overflow: hidden;
+}
+
+
+.donut-summary {
+
+}
+
+	.donut-summary .single-number {
+		border-top: 3px solid #cc8d3e;
+		background: #282828;
+		height: 70px;
+		border-right: 1px solid #efeeee;
+	}
+	.donut-summary .single-number:last-child {
+		border-right: 0;
+	}
+
+	.donut-summary p {
+		text-align: center;
+		font-size: 14px;
+		color: #FFF;
+		margin-top: 10px;
+	}
+
+	.donut-summary b {
+		display: block;
+		margin: 5px auto;
+		font-size: 18px;
+		margin-top: -5px;
+		font-weight: normal;
+	}
+
+	.filterbox {
+		background: #efeeee;
+		margin-bottom: 15px;
+	}
+
+	.filterbox p {
+		margin: 10px 25px 0px 25px;
+	}
+
+	.filterbox .input-group {
+		margin: 0px 25px 10px 25px;
+	}
+
+	.filterbox p.socialicons {
+		margin: 0px 0px 0px 25px;
+	}
+
+	.filterbox p.socialicons i {
+		font-size: 30px;
+		margin-right: 10px;
+	}
+
+	.filterbox p.socialicons a {
+		color: #484848;
+	}

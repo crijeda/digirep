@@ -1,3 +1,5 @@
+Meteor.subscribe('userData');
+
 Template.appLayout.rendered = function() {
     $('.sidebar-toggle').each(function() {
         var group = $(this);
@@ -10,55 +12,80 @@ Template.appLayout.rendered = function() {
 
     $('.sidebar-toggle').click(function(e) {
         e.preventDefault();
-//Enable sidebar push menu
-$("body").toggleClass('sidebar-collapse');
-$("body").toggleClass('sidebar-open');
-});
-    $(".content-wrapper").click(function() {
-//Enable hide menu when clicking on the content-wrapper on small screens    
-if ($(window).width() <= 767 && $("body").hasClass("sidebar-open")) {
-    $("body").removeClass('sidebar-open');
-}
-});
 
-    $("li a", $('.sidebar')).click(function(e) {
-//Get the clicked link and the next element
-var $this = $(this);
-var checkElement = $this.next();
+    //Enable sidebar push menu
+    $("body").toggleClass('sidebar-collapse');
+    $("body").toggleClass('sidebar-open');
+    });
+        $(".content-wrapper").click(function() {
+    //Enable hide menu when clicking on the content-wrapper on small screens    
+    if ($(window).width() <= 767 && $("body").hasClass("sidebar-open")) {
+        $("body").removeClass('sidebar-open');
+    }
+    });
 
-//Check if the next element is a menu and is visible
-if ((checkElement.is('.treeview-menu')) && (checkElement.is(':visible'))) {
-//Close the menu
-checkElement.slideUp('normal', function() {
-    checkElement.removeClass('menu-open');
-});
-checkElement.parent("li").removeClass("active");
-}
-//If the menu is not visible
-else if ((checkElement.is('.treeview-menu')) && (!checkElement.is(':visible'))) {
-//Get the parent menu
-var parent = $this.parents('ul').first();
-//Close all open menus within the parent
-var ul = parent.find('ul:visible').slideUp('normal');
-//Remove the menu-open class from the parent
-ul.removeClass('menu-open');
-//Get the parent li
-var parent_li = $this.parent("li");
+        $("li a", $('.sidebar')).click(function(e) {
+    //Get the clicked link and the next element
+    var $this = $(this);
+    var checkElement = $this.next();
 
-//Open the target menu and add the menu-open class
-checkElement.slideDown('normal', function() {
-//Add the class active to the parent li
-checkElement.addClass('menu-open');
-parent.find('li.active').removeClass('active');
-parent_li.addClass('active');
-});
-}
-//if this isn't a link, prevent the page from being redirected
-if (checkElement.is('.treeview-menu')) {
-    e.preventDefault();
-}
-});
+    //Check if the next element is a menu and is visible
+    if ((checkElement.is('.treeview-menu')) && (checkElement.is(':visible'))) {
+    //Close the menu
+    checkElement.slideUp('normal', function() {
+        checkElement.removeClass('menu-open');
+    });
+    checkElement.parent("li").removeClass("active");
+    }
+    //If the menu is not visible
+    else if ((checkElement.is('.treeview-menu')) && (!checkElement.is(':visible'))) {
+    //Get the parent menu
+    var parent = $this.parents('ul').first();
+    //Close all open menus within the parent
+    var ul = parent.find('ul:visible').slideUp('normal');
+    //Remove the menu-open class from the parent
+    ul.removeClass('menu-open');
+    //Get the parent li
+    var parent_li = $this.parent("li");
 
+    //Open the target menu and add the menu-open class
+    checkElement.slideDown('normal', function() {
+    //Add the class active to the parent li
+    checkElement.addClass('menu-open');
+    parent.find('li.active').removeClass('active');
+    parent_li.addClass('active');
+    });
+    }
+    //if this isn't a link, prevent the page from being redirected
+    if (checkElement.is('.treeview-menu')) {
+        e.preventDefault();
+    }
+    });
+
+
+    if(Meteor.user() && Meteor.user().services && Meteor.user().services.twitter){
+        Meteor.users.update({_id: Meteor.user()._id}, { 
+                $set: {roles: "Influencer", username: Meteor.user().profile.name}
+            }
+        );
+    }
+
+    // if(Meteor.user()){
+
+    //     if(Meteor.user().profile){
+    //         if(Meteor.user().profile.name){
+    //             //alert(Meteor.user().services.twitter.screenName)
+    //             Meteor.users.update({_id: Meteor.user()._id}, {$set: {roles: "Influencer"} });
+    //         } else{
+            
+    //         }
+    //     }else{
+        
+    //     }
+
+    // }else{
+
+    // }
 
 }
 
@@ -143,17 +170,25 @@ Template._influencerSidebar.helpers({
     },
     profileimage: function () {
 
-        var profile = Profile.find({userId:Meteor.userId()}).fetch();
-        var twitteraccount = profile[0].twitteracccount;
-        var datatwitter = DataTwitter.find({screenname:twitteraccount}).fetch();
-        var profileimage = datatwitter[0].profilestatistics[0].profileimage;
-        if (profileimage.indexOf("jpg") > 0) {
+        // var profile = Profile.find({userId:Meteor.userId()}).fetch();
+        // var twitteraccount = profile[0].twitteracccount;
+        // var datatwitter = DataTwitter.find({screenname:twitteraccount}).fetch();
+        // var profileimage = datatwitter[0].profilestatistics[0].profileimage;
+        var user = Meteor.users.find().fetch();
+        var profileimage = user[0].services.twitter.profile_image_url;
+        // var stringsize = profileimage.length;
 
-            return profileimage.substring(0, 63)+'.jpg';
+        if (profileimage.indexOf("jpg") > 0) {
+            var stringsize = profileimage.length - 11;
+            return profileimage.substring(0, stringsize)+'.jpg';
         }
         if (profileimage.indexOf("jpeg") > 0) {
-
-            return profileimage.substring(0, 63)+'.jpeg';
+            var stringsize = profileimage.length - 12;
+            return profileimage.substring(0, stringsize)+'.jpeg';
+        }
+         if (profileimage.indexOf("png") > 0) {
+            var stringsize = profileimage.length - 11;
+            return profileimage.substring(0, stringsize)+'.png';
         }
         // return profileimage.substring(0, 63)+'.jpg';
     },

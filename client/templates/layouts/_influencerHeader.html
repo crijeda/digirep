@@ -258,7 +258,13 @@
 
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
-                <h1 class="user-name colorgray" id="data-profile-name">{{ profile.firstname }} {{ profile.lastname }}</h1>
+                <h1 class="user-name colorgray" id="data-profile-name">
+                {{# if profile.firstname}}
+                {{ profile.firstname }} {{ profile.lastname }}
+                {{else}}
+                {{ user.username }} 
+                {{/if}}
+                </h1>
                 <!-- <br> -->
                <div class="user-avatar-box">
 

@@ -38,6 +38,7 @@ Router.route('/influencer/preferences', {
 Router.route('/influencer/profile/:_id', function () {
   var item = Profile.findOne({userId: this.params._id});
   this.render('influencerProfile', {data: item});
+  this.layout('appLayout');
 
 });
 

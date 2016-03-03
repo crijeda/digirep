@@ -53,6 +53,37 @@ Template.users.helpers({
 
 
 Template.login.events({
+
+    'click .tw-login': function ( event, template ) {
+        
+        Meteor.loginWithTwitter(function(error){
+            if(error){
+                Router.go('login');
+
+            } else {
+
+                Router.go("home");
+                var user = Meteor.users.find().fetch();
+                var screenname = user[0].services.twitter.screenName;
+                var datatwitter = DataTwitter.find({screenname: screenname}).fetch();
+
+                if (datatwitter.length > 0){
+
+                    
+                    Meteor.call('sincTwitter');
+                    console.log('helloooo world!!');
+
+                }
+                else {
+
+                    
+                    Meteor.call('createTwitterData');
+                    console.log(screenname);
+                }
+            }
+        });
+
+    },
     'submit form': function(event){
         event.preventDefault();
         var email = $('[name=email]').val();
@@ -71,6 +102,20 @@ Template.login.events({
     }
 });
 Template.loginf.events({
+    
+    'click .tw-login': function ( event, template ) {
+        
+        Meteor.loginWithTwitter(function(error){
+            if(error){
+                Router.go('login');
+
+            } else {
+
+                Router.go("home");
+            }
+        });
+
+    },
     'submit form': function(event){
         event.preventDefault();
         var email = $('[name=email]').val();

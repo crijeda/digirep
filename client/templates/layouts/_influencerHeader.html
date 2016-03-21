@@ -271,7 +271,7 @@
                         {{# if profileimage}}
                         <img src="{{ profileimage }}" class="img-responsive user-avatar" alt="" id="data-profile-picture" style="border: solid; border-width: 8px;">
                         {{ else }}
-                        <img src="http://team.org/blog/wp-content/uploads/2014/06/blank-user.jpg" class="img-responsive user-avatar" alt="" id="data-profile-picture" style="border: solid; border-width: 8px;">
+                        <img src="{{ datainstagram.profilestatistics.[0].profileimage }}" class="img-responsive user-avatar" alt="" id="data-profile-picture" style="border: solid; border-width: 8px;">
                         {{/if}}
 
                 </div>
@@ -282,6 +282,7 @@
                     {{ profile.bio }}
                     {{else}}
                     {{ datatwitter.profilestatistics.[0].profilebio }} 
+                    {{ datainstagram.profilestatistics.[0].profilebio }} 
                     {{/if}}
                     </p>
                 </div><!-- /.col-xs-12 -->
@@ -297,7 +298,7 @@
                 <li class="treeview ">
                     <a href="#"><i class="fa fa-star"></i><span>Mi Cuenta</span> <i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu nav nav-second-level">
-                        <li><a href="{{ pathFor 'influencer/preferences' }}">Mis Preferencias</a></li>
+                        <li><a href="{{ pathFor 'influencer' }}/preferences/{{userId}}">Mis Preferencias</a></li>
                         <li><a href="{{ pathFor 'influencer' }}/profile/{{userId}}">Mi Perfil</a></li>
                         <li><a href="{{ pathFor 'influencer/facturation' }}">Mis datos de Facturacion</a></li>
                     </ul>

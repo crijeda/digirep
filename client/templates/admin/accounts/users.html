@@ -51,9 +51,8 @@
 </template>
 
 <template name="ShowProfile">
-{{> publicHeader}}
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
+     
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1 style="margin-left: 10px">
@@ -70,29 +69,31 @@
      
         <div class="row">
         <div class="content tablecenter">
-        {{> quickForm schema=schema collection="Meteor.users" doc=this id="ShowProfile" type="update"}}
-<!--         {{#autoForm schema=schema collection="Meteor.users" doc=this id="ShowProfile" type="update"}}
+     <!--    {{> quickForm schema=schema collection="Meteor.users" doc=this id="ShowProfile" type="update"}}
+ -->        {{#autoForm schema=schema collection="Meteor.users" doc=this id="ShowProfile" type="update"}}
           <fieldset>
-            <legend>Perfil de {{username}} - {{emails.[0].address}}</legend>
+            <legend>Perfil de {{username}}</legend>
             {{> afQuickField name="username"}}
-            {{> afQuickField name="email"}}
-            {{> afQuickField name="zoneId"}}
-            {{> afQuickField name="passwordConfirmation"}}
+           
+            <div class="form-group">
+                      <label>E-mail</label>
+                      <input class="form-control" value="{{emails.[0].address}}" disabled>
+                      </div>
+            {{> afQuickField name="roles" type="select" options=RolesOptions}}
+           
             <div align="right">
               <button type="button" class="btn btn-danger remove">Borrar</button>
               <button type="button" class="btn btn-default cancel">Cancelar</button>
               <button type="submit" class="btn btn-primary cancel">Guardar</button>           
             </div>
           </fieldset>
-      {{/autoForm}} -->
+      {{/autoForm}}
         </div>
         </div>
         
         </section>
-      </div>
-      {{> _appFooter}}
+  
 </template>
-
 <template name="login">
     <body class="hold-transition login-page bgblue">
 <div class="login-box">

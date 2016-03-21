@@ -108,6 +108,15 @@
 
 	<section class="content">
 
+
+		<!-- <h2>Influenciadores</h2> -->
+
+		{{> example}}
+
+	</section>
+
+	<section class="content">
+
 		<div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header gradientbg">Campañas Activas</h1>
@@ -457,4 +466,105 @@
 		</div><!-- /.row -->
 	</section>
 
+</template>
+
+<template name="example">
+<div>
+<h2 class="gradientbg" style="color: #000053;">
+			Busqueda Simple de Influenciadores
+		</h2>
+		<div class="row">
+            <div class="col-xs-12">
+                <hr class="gradientbg">
+            </div><!-- /.col-xs-12 -->
+        </div>
+<div class="row">
+<!-- 	<h2 class="gradientbg">
+			Filtros
+		</h2> -->
+	<div id="filters" class="button-group col-md-6">
+	<h2 class="gradientbg" style="color: #000053;">
+			Red Social
+		</h2>  
+	<!--   <button class="btn btn-info button is-checked" data-filter="*">show all</button>
+	  <button class="btn btn-info button" data-filter=".interes1">Interes 1</button>
+	  <button class="btn btn-info button" data-filter=".interes2">Interes 2</button>
+	  <button class="btn btn-info button" data-filter=".interes3, .interes4">Interes 3 y Interes 4</button> -->
+	  <button class="btn btn-primary button" data-filter=".twitter">Twitter</button>
+	  <button class="btn btn-primary button" data-filter=".instagram">Instagram</button>
+
+	</div>
+
+<!-- 	<h2 class="gradientbg">
+			Ordenar por
+		</h2> -->
+	<div id="sorts" class="button-group col-md-6"> 
+	<h2 class="gradientbg" style="color: #000053;">
+			Ordenar por
+		</h2> 
+	  <button class="btn btn-primary button is-checked" data-sort-by="original-order">Original</button>
+	  <button class="btn btn-primary button" data-sort-by="username">Nombre</button>
+	  <button class="btn btn-primary button" data-sort-by="followers">Followers</button>
+	  <button class="btn btn-primary button" data-sort-by="retweets">Retweets</button>
+	  <!-- <button class="btn btn-info button" data-sort-by="age">Edad</button> -->
+	</div>
+	</div>
+	
+	</div>
+	<br>
+	<div class="row">
+            <div class="col-xs-12">
+                <hr class="gradientbg">
+            </div><!-- /.col-xs-12 -->
+        </div>
+	<div class="isotope">
+
+
+	
+
+{{#each ItemsToDisplay }}
+	{{#if dataTwitter}}
+		<div class="element-item col-md-3 {{filters}}" >
+
+			<img src="{{image}}" style="height: 300px;" class="img-responsive user-avatar">
+
+			<div class="title">
+				<div><h2 class="username" >{{ dataTwitter.name }}</h2></div>
+				<div><h3 class="age">XX años</h3></div>
+			</div>
+
+			<div class="body">
+				<!-- {{# if twitter}} -->
+					<div class="twitter">
+						<p>
+							<i class="fa fa-twitter-square"></i>
+							<span class="twitterName">{{twitterAccount}}</span></p>
+						<p>
+							<i class="fa fa-users"></i>
+							 <span class="followers"> {{dataTwitter.qtyfollowers}}</span>
+							<i class="fa fa-retweet"></i>
+							 <span class="retweets"> {{dataTwitter.qtyretweets}}</span>
+						</p>
+					</div>
+				<!-- {{/ if}}
+
+				{{# if instagram}} -->
+					<div class="instagram">
+						<p>
+							<i class="fa fa-instagram"></i>
+							 <span class="instagramName">{{instagramAccount}}</span>
+						</p>
+						<p>
+							<i class="fa fa-heart"></i>
+							 <span class="likes"> {{dataInstagram.qtylikes}}</span>
+						</p>
+					</div>
+				<!-- {{/ if}} -->
+			</div>
+
+		</div>
+
+	{{/if}}
+  {{/ each }}
+</div>
 </template>

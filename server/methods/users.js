@@ -15,6 +15,5 @@ Meteor.methods({
     var User = Meteor.userId();
  
     Meteor.users.update(User, {$set: {username: doc.username}});
-  },
-  
+  }
 });

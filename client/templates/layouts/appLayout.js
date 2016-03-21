@@ -70,6 +70,13 @@ Template.appLayout.rendered = function() {
         );
     }
 
+     if(Meteor.user() && Meteor.user().services && Meteor.user().services.instagram){
+        Meteor.users.update({_id: Meteor.user()._id}, { 
+                $set: {roles: "Influencer", username: Meteor.user().profile.name}
+            }
+        );
+    }
+
     // if(Meteor.user()){
 
     //     if(Meteor.user().profile){
@@ -175,7 +182,7 @@ Template._influencerSidebar.helpers({
         // var datatwitter = DataTwitter.find({screenname:twitteraccount}).fetch();
         // var profileimage = datatwitter[0].profilestatistics[0].profileimage;
         var user = Meteor.users.find().fetch();
-        var profileimage = user[0].services.twitter.profile_image_url;
+        var profileimage = Meteor.user().services.twitter.profile_image_url;
         // var stringsize = profileimage.length;
 
         if (profileimage.indexOf("jpg") > 0) {
@@ -198,6 +205,13 @@ Template._influencerSidebar.helpers({
         var twitteraccount = profile[0].twitteracccount;
         var datatwitter = DataTwitter.find({screenname:twitteraccount}).fetch();
         return datatwitter[0]
+    },
+    datainstagram: function () {
+
+        var profile = Profile.find({userId:Meteor.userId()}).fetch();
+        var screenname = Meteor.user().services.instagram.username;
+        var datainstagram = DataInstagram.find({screenname:screenname}).fetch();
+        return datainstagram[0]
     },
 
 });

@@ -25,9 +25,15 @@ Router.route('/influencer', {
 });
 
 //INFLUENCER
-Router.route('/influencer/preferences', {
-  name: 'influencer/preferences',
-  layoutTemplate: 'appLayout'
+// Router.route('/influencer/preferences', {
+//   name: 'influencer/preferences',
+//   layoutTemplate: 'appLayout'
+// });
+Router.route('/influencer/preferences/:_id', function () {
+  var item = Profile.findOne({userId: this.params._id});
+  this.render('influencerPreferences', {data: item});
+  this.layout('appLayout');
+
 });
 
 // Router.route('/influencer/profile', function () {
@@ -120,6 +126,24 @@ Router.route('/business/help', {
 Router.route('/admin/accounts', {
   name: 'users'
 });
+
+Router.route('/admin/profiles', {
+  name: 'profilesadmin',
+  layoutTemplate: 'appLayout'
+});
+
+Router.route('/admin/profiles/:_id', function () {
+  var item = Profile.findOne({_id: this.params._id});
+  this.render('ShowProfileAdmin', {data: item});
+  this.layout('appLayout');
+});
+
+Router.route('/admin/accounts/:_id', function () {
+  var item = Meteor.users.findOne({_id: this.params._id});
+  this.render('ShowProfile', {data: item});
+  this.layout('appLayout');
+});
+
 
 Router.route('/login', {
   name: 'login'

@@ -6,6 +6,12 @@ if (Meteor.isClient) {
   Meteor.subscribe("datatwitter");
   Meteor.subscribe("datainstagram");
 
+  Meteor.users.allow({
+    insert: function () { return true; },
+    update: function () { return true; },
+    remove: function () { return true; }
+});
+
 }
 
 // Template.homeInfluencer.onCreated(function() {
@@ -17,6 +23,54 @@ Template.homeInfluencer.events({
     'click .sincTwitter': function (event) {
         event.preventDefault();
         Meteor.call('sincTwitter');
+    },
+    'click .instaconnect': function (event) {
+        event.preventDefault();
+        var olduserid = Meteor.userId();
+        // console.log(olduserid);
+        var user1 = Meteor.users.find({_id:Meteor.userId()}).fetch();
+        var twitter = user1[0].services.twitter;
+
+        Meteor.loginWithInstagram(function (err) {
+          if (err) {
+            console.log('login failed', err);
+
+          }
+                    var user2 = Meteor.users.find({_id:Meteor.userId()}).fetch();
+                    var instagram = user2[0].services.instagram;
+                     Meteor.users.update({_id:olduserid},
+                      { $set: {  "services" : { "instagram" : instagram, "twitter" : twitter }}});
+
+                    Meteor.users.remove({_id:Meteor.userId()});
+
+
+            }
+      );
+        
+    },
+    'click .twconnect': function (event) {
+        event.preventDefault();
+        var olduserid = Meteor.userId();
+        // console.log(olduserid);
+        var user1 = Meteor.users.find({_id:Meteor.userId()}).fetch();
+        var instagram = user1[0].services.instagram;
+
+        Meteor.loginWithTwitter(function (err) {
+          if (err) {
+            console.log('login failed', err);
+
+          }
+                    var user2 = Meteor.users.find({_id:Meteor.userId()}).fetch();
+                    var twitter = user2[0].services.twitter;
+                     Meteor.users.update({_id:olduserid},
+                      { $set: {  "services" : { "instagram" : instagram, "twitter" : twitter }}});
+
+                    Meteor.users.remove({_id:Meteor.userId()});
+
+
+            }
+      );
+        
     }
 
 });
@@ -52,8 +106,8 @@ Template.homeInfluencer.helpers({
     datainstagram: function () {
 
         var profile = Profile.find({userId:Meteor.userId()}).fetch();
-        var instagramaccount = profile[0].instagramaccount;
-        var datainstagram = DataInstagram.find({screenname:instagramaccount}).fetch();
+        var screenname = Meteor.user().services.instagram.username;
+        var datainstagram = DataInstagram.find({screenname:screenname}).fetch();
         return datainstagram[0]
     },
 

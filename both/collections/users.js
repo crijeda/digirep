@@ -64,7 +64,7 @@ TabularTables = {};
 TabularTables.Users = new Tabular.Table({
     name: "Users",
     autoWidth: false,
-    order: [[0, "asc"]],
+    order: [[1, "asc"]],
     collection: Meteor.users,
     columns: [
     {data: "username", title: "Nombre Usuario"},

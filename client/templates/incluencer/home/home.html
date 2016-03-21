@@ -188,7 +188,7 @@
 		        		<div class="row">
 			        	 <div class="col-xs-12 col-md-12">
 					        		<div class="chartbox sm single-number">
-					        			<p><i class="fa fa-twitter" style="color: #000053;"></i> <span id="data-facebook-fans"><button type="submit" class="btn btn-premium sm" onclick="history.go(0)">Conectar</button></span></p>
+					        			<p><i class="fa fa-twitter" style="color: #000053;"></i> <span id="data-facebook-fans"><button type="submit" class="btn btn-premium sm twconnect">Conectar</button></span></p>
 					        			<h3></h3>
 					        		</div>
 			        	</div>
@@ -196,7 +196,7 @@
 					 </div>
 		        	{{/if}}
 		   			
-		   			{{ # if profile.instagramaccount }}
+		   			{{ # if datainstagram.screenname}}
 					<!-- INSTAGRAM -->
 		        	<div class="col-xs-12">
 		        		<div class="row">
@@ -213,7 +213,7 @@
 				        	</div><!-- /.col-xs-3 -->
 				        	<div class="col-xs-6 col-md-3">
 				        		<div class="chartbox sm single-number">
-				        			<p><i class="fa fa-heart"></i> 1.576</p>
+				        			<p><i class="fa fa-heart"></i> {{ # if datainstagram.profilestatistics.[0].likes }}{{ datainstagram.profilestatistics.[0].likes }}{{else}}0{{/if}}</p>
 				        			<h3>Likes</h3>
 				        		</div><!-- /.chartbox -->
 
@@ -222,16 +222,16 @@
 				        		<div class="chartbox sm single-number">
 				        			<div class="row">
 				        				<div class="col-xs-6">
-						        			<p><i class="fa fa-instagram"></i> 5.768</p>
+						        			<p><i class="fa fa-instagram"></i> {{ datainstagram.profilestatistics.[0].qtyfeeds }}</p>
 						        			<h3>Publicaciones</h3>
 				        				</div><!-- /.col-xs-6 -->
 				        				<div class="col-xs-6 mediabox">
 				        					<div class="row">
 				        						<div class="col-xs-12">
-				        							<p><i class="fa fa-font"></i> <span id="data-total-text">4.749</span></p>
+				        							<p><i class="fa fa-font"></i> <span id="data-total-text">{{ # if datainstagram.profilestatistics.[0].qtyfeeds }}{{ datainstagram.profilestatistics.[0].qtyfeeds }}{{else}}0{{/if}}</span></p>
 				        						</div><!-- /.col-xs-12 -->
 				        						<div class="col-xs-12">
-				        							<p><i class="fa fa-picture-o"></i> <span id="data-total-picture">527</span></p>
+				        							<p><i class="fa fa-picture-o"></i> <span id="data-total-picture">{{ # if datainstagram.profilestatistics.[0].images}}{{ datainstagram.profilestatistics.[0].images}}{{else}}0{{/if}}</span></p>
 				        						</div><!-- /.col-xs-12 -->
 				        					</div><!-- /.row -->
 				        					<div class="row">
@@ -257,7 +257,7 @@
 		        		<div class="row">
 			        	 <div class="col-xs-12 col-md-12">
 					        		<div class="chartbox sm single-number">
-					        			<p><i class="fa fa-instagram" style="color: #000053;"></i> <span id="data-facebook-fans"><button type="submit" class="btn btn-premium sm" onclick="history.go(0)">Conectar</button></span></p>
+					        			<p><i class="fa fa-instagram" style="color: #000053;"></i> <span id="data-facebook-fans"><button type="submit" class="btn btn-premium sm instaconnect">Conectar</button></span></p>
 					        			<h3></h3>
 					        		</div>
 			        	</div>
@@ -343,7 +343,7 @@
 					        			<h3></h3>
 					        		</div>
 			        	</div>
-			        	</div>		
+			        	</div>			
 					 </div>
 
 							
